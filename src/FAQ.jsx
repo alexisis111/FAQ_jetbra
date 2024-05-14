@@ -1,19 +1,18 @@
 import { useRef, useState, useEffect } from "react"
 import {useTelegram} from "../hooks/useTelegram.js";
 import Header from "./Header.jsx";
-;
+
 
 const FaqsCard = (props) => {
-
+    const { tg } = useTelegram();
+    useEffect(() => {
+        tg.ready();
+    }, []);
     const answerElRef = useRef()
     const [state, setState] = useState(false)
     const [answerH, setAnswerH] = useState('0px')
     const { faqsList, idx } = props
 
-    const { tg } = useTelegram();
-    useEffect(() => {
-        tg.ready();
-    }, []);
 
     const handleOpenAnswer = () => {
         const answerElH = answerElRef.current.childNodes[0].offsetHeight
@@ -59,25 +58,29 @@ export default () => {
 
     const faqsList = [
         {
-            q: "What are some random questions to ask?",
-            a: "That's exactly the reason we created this random question generator. There are hundreds of random questions to choose from so you're able to find the perfect random question."
+            q: "Что за лицензия?Сколько будет работать?",
+            a: "лицензия через сервер активации. Будет работать до 2026 года."
         },
         {
-            q: "Do you include common questions?",
-            a: "This generator doesn't include most common questions. The thought is that you can come up with common questions on your own so most of the questions in this generator."
+            q: "Это студенческая лицензия?",
+            a: "Нет, это не студенческая лицензия."
         },
         {
-            q: "Can I use this for 21 questions?",
-            a: "Yes! there are two ways that you can use this question generator depending on what you're after. You can indicate that you want 21 questions generated."
+            q: "Лицензия на мой аккаунт?",
+            a: "Нет. Вообще аккаунт не нужен. Ваш аккаунт может быть введен. Все будет работать."
         },
         {
-            q: "Are these questions for girls or for boys?",
-            a: "The questions in this generator are gender neutral and can be used to ask either male of females (or any other gender the person identifies with)."
+            q: "Не обман?",
+            a: "Нет) Смысла обманывать просто нет))."
         },
         {
-            q: "What do you wish you had more talent doing?",
-            a: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires."
-        }
+            q: "Не слетит лицензия?",
+            a: "Нет, все работает надежно, ничего не слетает"
+        },
+        {
+            q: "Какие гарантии?",
+            a: "Я человек честный, и никого не обманываю, знаю что слова это слова, но на деле вы убедитесь сами. Рейтинг на авито - реальный."
+        },
     ]
 
     return (
@@ -88,7 +91,7 @@ export default () => {
                     ТУТ ВСЕ ОТВЕТЫ - НА ВСЕ ВОПРОСЫ
                 </h1>
                 <p className="text-gray-600 max-w-lg mx-auto text-lg">
-                    Answered all frequently asked questions, Still confused? feel free to contact us.
+                    Если тут нет вашего вопроса. Просто напишите свой вопрос в чат боту.
                 </p>
             </div>
             <div className="mt-14 max-w-2xl mx-auto">
